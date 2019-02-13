@@ -152,8 +152,7 @@ class PolicyId(Policy):
             remote = identifier.find('xades:Identifier', namespaces=NS_MAP).text
 
         if self.remote:
-            file = open(self.remote,'rb')
-            value = file.read()
+            value = self.remote  # Base64-decoded PDF (bytes)
         else:
             value = urllib.urlopen(remote).read()
         value = self.set_transforms(policy_id, value, sign)
